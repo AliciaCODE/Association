@@ -15,6 +15,7 @@ class AbonnesController extends Controller
    private $errors = array();
    private $post = array();
 
+//  -----------------     listing des abonnés   -------------------------//
    public function liste()
    {  $abonnes = AbonnesModel::all();
       $titre = 'Liste des abonnés';
@@ -25,16 +26,7 @@ class AbonnesController extends Controller
       ));
    }
 
-   public function detail($id)
-   {  $titre = 'Detail abonné';
-      $this->getAbonne($id);
-
-      $this->render('app.abonnes.detail',array(
-         'titre' => $titre,
-         'abonne' => $this->abonne
-      ));
-   }
-
+// ----------------------- ajouter un abonné ------------------------------//
    public function add()
    {  $titre = 'Ajouter un abonné';
 
@@ -54,6 +46,7 @@ class AbonnesController extends Controller
       ));
    }
 
+// --------------------------- modifier un abonné --------------------------//
    public function update($id)
    {  $titre = 'Editer un abonné';
       $this->getAbonne($id);
@@ -72,6 +65,7 @@ class AbonnesController extends Controller
       ));
    }
 
+// ------------------------ supprimer un abonné --------------------------//
    public function delete($id)
    {  $this->getAbonne($id);
       AbonnesModel::delete($this->abonne->id);
@@ -99,14 +93,6 @@ class AbonnesController extends Controller
          }
       }
       return false;
-   }
-
-   /**
-   *
-   */
-   public function Page404()
-   {
-      $this->render('app.default.404');
    }
 
 }
